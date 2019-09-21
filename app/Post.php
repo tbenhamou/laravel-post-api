@@ -10,6 +10,17 @@ class Post extends Model
     protected $guarded = [];
 
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'content' => $this->content,
+            'user_name' => $this->user->name,
+            'user_email' => $this->user->email,
+        ];
     }
 }
